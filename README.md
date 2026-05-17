@@ -42,6 +42,8 @@ pip3 install --pre torch torchvision torchaudio --index-url https://download.pyt
 
 Compile `forcegttalloc.c` with `CUDA_PATH=/usr/ HIP_PLATFORM="amd" hipcc forcegttalloc.c -o libforcegttalloc.so  -shared -fPIC`.
 
+If the above fails, instead of `/usr/` also try `/opt/cuda/`.
+
 If `hipcc` is not found, it may reside in `/opt/rocm/bin/hipcc`.
 
 Then, for programs using PyTorch, you will need to use 'LD_PRELOAD' to reroute hipMalloc into hipHostMalloc. In my case I have an Ryzen 7 5700G and therefore I have to prepend 'HSA_OVERRIDE_GFX_VERSION=9.0.0', but this changes depending on your APU.
